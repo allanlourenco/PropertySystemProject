@@ -18,8 +18,8 @@ namespace PropertySystemProject.CrossCuting.IoC
 
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            //serviceCollection.AddScoped<IDashboardRepository, DashboardRepository>();
-          
+            serviceCollection.AddScoped<IAddressRepository, AddressRepository>();
+            serviceCollection.AddScoped<IPropertyRepository, PropertyRepository>();
         }
     }
 }
