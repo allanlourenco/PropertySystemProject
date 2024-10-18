@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PropertySystemProject.Domain.Interfaces.Service;
+using PropertySystemProject.Service.Services;
 
 namespace PropertySystemProject.CrossCuting.IoC
 {
-    internal class ConfigureServices
+    public class ConfigureServices
     {
+        public static void AddApplicationServices(IServiceCollection services)
+        {
+            services.AddScoped<IPropertyService, PropertyService>();
+        }
     }
 }

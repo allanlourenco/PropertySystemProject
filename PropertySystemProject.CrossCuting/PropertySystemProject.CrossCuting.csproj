@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PropertySystemProject.Data\PropertySystemProject.Data.csproj" />
+    <ProjectReference Include="..\PropertySystemProject.Service\PropertySystemProject.Service.csproj" />
   </ItemGroup>
 
 </Project>

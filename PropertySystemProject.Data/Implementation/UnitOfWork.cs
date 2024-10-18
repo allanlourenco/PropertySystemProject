@@ -12,14 +12,15 @@ namespace PropertySystemProject.Data.Implementation
     {
         private readonly PropertyWebContext _dbContext;
 
-        //public IGrupoClienteRepository GrupoClienteRepository { get; set; }
-        //public UnitOfWork(TitanWebContext dbContext)
-        //{
-        //    _dbContext = dbContext;
+        public IPropertyRepository PropertyRepository { get; set; }
+        public IAddressRepository AddressRepository { get; set; }
+        public UnitOfWork(PropertyWebContext dbContext)
+        {
+            _dbContext = dbContext;
 
-        //    GrupoClienteRepository = new GrupoClienteRepository(_dbContext, mapper);
-       
-        //}
+            PropertyRepository = new PropertyRepository(_dbContext);
+            AddressRepository = new AddressRepository(_dbContext);
+        }
 
         public async Task<bool> CommitAsync()
         {
