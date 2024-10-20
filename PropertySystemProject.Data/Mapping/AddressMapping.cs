@@ -24,7 +24,7 @@ namespace PropertySystemProject.Data.Mapping
 
             builder.Property(e => e.Street)
                 .HasColumnName("Street")
-                .HasColumnType("varchar")
+                .HasColumnType("varchar(200)")
                 .IsRequired();
 
             builder.Property(e => e.Number)
@@ -34,7 +34,7 @@ namespace PropertySystemProject.Data.Mapping
 
             builder.Property(e => e.City)
                 .HasColumnName("City")
-                .HasColumnType("varchar")
+                .HasColumnType("varchar(100)")
                 .IsRequired();
 
             builder.Property(e => e.State)
@@ -49,7 +49,7 @@ namespace PropertySystemProject.Data.Mapping
 
             builder.Property(e => e.Complement)
                 .HasColumnName("Complement")
-                .HasColumnType("varchar")
+                .HasColumnType("varchar(200)")
                 .IsRequired(false);
 
             builder.HasOne(e => e.Property)

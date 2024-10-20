@@ -29,7 +29,8 @@ namespace PropertySystemProject.Data.Implementation
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _dbContext?.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

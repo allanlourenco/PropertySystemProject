@@ -9,20 +9,13 @@ namespace PropertySystemProject.Domain.Entities
 {
     public class Address : BaseEntityWithKey
     {
-        //[Required(ErrorMessage = "A rua do imóvel é obrigatório.")]
         public string Street {  get; set; } = string.Empty;
-        //[Required(ErrorMessage = "O número do endereço do imóvel é obrigatório.")]
         public int Number { get; set; }
-        //[Required(ErrorMessage = "A cidade do imóvel é obrigatória.")]
         public string City { get; set; } = string.Empty;
-        //[Required(ErrorMessage = "O estado do imóvel é obrigatório.")]
-        //[StringLength(2, MinimumLength = 2, ErrorMessage = "O campo estado do imóvel deve conter exatamente 2 caracteres.")]
         public string State { get; set; } = string.Empty;
-        //[Required(ErrorMessage = "O CEP do imóvel é obrigatório.")]
         public string CEP { get; set; } = string.Empty;
         public string? Complement { get; set; }
 
-        // Relacionamento one-to-one com Property
         public Property Property { get; set; }
     }
 }

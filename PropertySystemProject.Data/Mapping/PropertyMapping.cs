@@ -63,7 +63,7 @@ namespace PropertySystemProject.Data.Mapping
                 .IsRequired();
 
             builder.HasOne(p => p.Address)
-            .WithOne(a => a.Property) // Um Endereco tem uma Property
+            .WithOne(a => a.Property)
             .HasForeignKey<Property>(p => p.AddressId)
             .HasConstraintName("FK_Property_Address")
             .OnDelete(DeleteBehavior.Cascade);

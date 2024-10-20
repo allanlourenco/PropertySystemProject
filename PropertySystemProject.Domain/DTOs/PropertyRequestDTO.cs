@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PropertySystemProject.Domain.DTOs
 {
-    public class PropertyDTO
+    public class PropertyRequestDTO
     {
         [Required(ErrorMessage = "O título do imóvel é obrigatório.")]
         [StringLength(150, ErrorMessage = "O titulo deve ter no máximo 150 caracteres.")]
