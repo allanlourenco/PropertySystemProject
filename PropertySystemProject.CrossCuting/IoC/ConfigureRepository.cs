@@ -15,6 +15,8 @@ namespace PropertySystemProject.CrossCuting.IoC
 
             serviceCollection.AddScoped<IAddressRepository, AddressRepository>();
             serviceCollection.AddScoped<IPropertyRepository, PropertyRepository>();
+
+            serviceCollection.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
     }
 }
