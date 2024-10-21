@@ -9,6 +9,7 @@ namespace PropertySystemProject.CrossCuting.IoC
         public static void AddApplicationServices(IServiceCollection services)
         {
             services.AddScoped<IPropertyService, PropertyService>();
+            services.AddScoped<IAccountService, AccountService>();
         }
     }
 }

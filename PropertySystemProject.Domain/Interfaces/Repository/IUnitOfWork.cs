@@ -10,6 +10,7 @@ namespace PropertySystemProject.Domain.Interfaces.Repository
     {
         IPropertyRepository PropertyRepository { get; }
         IAddressRepository AddressRepository { get; }
+        IUserRepository UserRepository { get; } 
         Task<bool> CommitAsync();
     }
 }

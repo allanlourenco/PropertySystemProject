@@ -65,6 +65,7 @@ namespace PropertySystemProject.Service.Services
             }
 
             var property = (Property)mapper.Map(propertyDTO, existingProperty);
+            property.SetUpdatedAt();
 
             await unitOfWork.PropertyRepository.UpdateAsync(property);
             await unitOfWork.CommitAsync();

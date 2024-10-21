@@ -14,12 +14,14 @@ namespace PropertySystemProject.Data.Implementation
 
         public IPropertyRepository PropertyRepository { get; set; }
         public IAddressRepository AddressRepository { get; set; }
+        public IUserRepository UserRepository { get; set; } 
         public UnitOfWork(PropertyWebContext dbContext)
         {
             _dbContext = dbContext;
 
             PropertyRepository = new PropertyRepository(_dbContext);
             AddressRepository = new AddressRepository(_dbContext);
+            UserRepository = new UserRepository(_dbContext);
         }
 
         public async Task<bool> CommitAsync()
