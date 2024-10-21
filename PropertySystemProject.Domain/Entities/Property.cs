@@ -19,5 +19,11 @@ namespace PropertySystemProject.Domain.Entities
         public StatusImovel Status { get; set; }
         public Guid AddressId { get; set; }
         public Address Address { get; set; }
+
+        public Property()
+        {
+            Id = Guid.NewGuid();
+            CreatedAt = DateTime.Now;
+        }
     }
 }

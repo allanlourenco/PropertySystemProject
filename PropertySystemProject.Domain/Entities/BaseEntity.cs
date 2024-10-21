@@ -8,14 +8,16 @@ namespace PropertySystemProject.Domain.Entities
 {
     public class BaseEntityAudit : BaseEntityWithKey
     {
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public bool IsActive { get; set; } = true;
+
+        public void SetUpdatedAt() { UpdatedAt = DateTime.Now; }
     }
 
     public class BaseEntityWithKey : BaseEntity
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
     }
 
     public class BaseEntity

@@ -17,5 +17,7 @@ namespace PropertySystemProject.Domain.Entities
         public string? Complement { get; set; }
 
         public Property Property { get; set; }
+
+        public void GenerateNewGuid() { Id = Guid.NewGuid(); }
     }
 }
