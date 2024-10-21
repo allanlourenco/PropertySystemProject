@@ -12,12 +12,14 @@ namespace PropertySystemProject.Application.Controllers
     public class PropertiesController(IPropertyService propertyService) : ControllerBase
     {
         /// <summary>
-        /// Busca todos os imóveis e seu endereço cadastrado 
+        /// Busca todos os imóveis e seus endereços cadastrados.
         /// </summary>
-        /// <returns>Retorna uma lista de imóveis com seu endereço cadastrado</returns>
+        /// <returns>Retorna uma lista de imóveis com seus endereços.</returns>
+        /// <response code="200">Retorna a lista de imóveis com sucesso.</response>
+        /// <response code="400">Erro ao processar a solicitação.</response>
+        [HttpGet]
         [ProducesResponseType(typeof(List<PropertyResponseDTO>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [HttpGet]
         public async Task<IActionResult> GetAllProperties()
         {
             try
@@ -34,7 +36,16 @@ namespace PropertySystemProject.Application.Controllers
 
         }
 
+        /// <summary>
+        /// Busca um imóvel específico pelo ID.
+        /// </summary>
+        /// <param name="id">ID do imóvel.</param>
+        /// <returns>Retorna os detalhes do imóvel, se encontrado.</returns>
+        /// <response code="200">Imóvel encontrado com sucesso.</response>
+        /// <response code="404">Imóvel não encontrado.</response>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(PropertyResponseDTO), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetPropertyById(Guid id)
         {
             var property = await propertyService.GetPropertyByIdAsync(id);
@@ -42,8 +53,17 @@ namespace PropertySystemProject.Application.Controllers
             return Ok(property);
         }
 
+        /// <summary>
+        /// Adiciona um novo imóvel ao sistema.
+        /// </summary>
+        /// <param name="propertyDTO">Objeto contendo os dados do imóvel a ser cadastrado.</param>
+        /// <returns>Retorna os detalhes do imóvel recém-criado.</returns>
+        /// <response code="201">Imóvel criado com sucesso.</response>
+        /// <response code="400">Erro ao criar o imóvel, dados inválidos.</response>
         [Authorize]
         [HttpPost]
+        [ProducesResponseType(typeof(PropertyResponseDTO), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AddProperty([FromBody] PropertyRequestDTO propertyDTO)
         {
             if (!ModelState.IsValid)
@@ -61,8 +81,20 @@ namespace PropertySystemProject.Application.Controllers
             return CreatedAtAction(nameof(GetPropertyById), new { id = propertyResponseDTO.Id }, propertyResponseDTO);
         }
 
+        /// <summary>
+        /// Atualiza os dados de um imóvel existente.
+        /// </summary>
+        /// <param name="id">ID do imóvel a ser atualizado.</param>
+        /// <param name="propertyDTO">Objeto contendo os novos dados do imóvel.</param>
+        /// <returns>Retorna NoContent se a atualização for bem-sucedida.</returns>
+        /// <response code="204">Imóvel atualizado com sucesso.</response>
+        /// <response code="400">Erro ao processar a solicitação, dados inválidos.</response>
+        /// <response code="404">Imóvel não encontrado.</response>
         [Authorize]
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateProperty(Guid id, [FromBody] PropertyRequestDTO propertyDTO)
         {
             if (!ModelState.IsValid)
@@ -79,8 +111,15 @@ namespace PropertySystemProject.Application.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Exclui um imóvel existente.
+        /// </summary>
+        /// <param name="id">ID do imóvel a ser excluído.</param>
+        /// <returns>Retorna NoContent se a exclusão for bem-sucedida.</returns>
+        /// <response code="204">Imóvel excluído com sucesso.</response>
         [Authorize]
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteProperty(Guid id)
         {
             await propertyService.DeletePropertyAsync(id);
