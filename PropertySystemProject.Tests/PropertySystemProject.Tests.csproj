@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PropertySystemProject.Application\PropertySystemProject.Application.csproj" />
+    <ProjectReference Include="..\PropertySystemProject.Domain\PropertySystemProject.Domain.csproj" />
     <ProjectReference Include="..\PropertySystemProject.Service\PropertySystemProject.Service.csproj" />
   </ItemGroup>
 
