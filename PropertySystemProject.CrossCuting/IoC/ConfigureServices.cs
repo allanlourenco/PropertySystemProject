@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PropertySystemProject.CrossCuting.Security;
 using PropertySystemProject.Domain.Interfaces.Service;
 using PropertySystemProject.Service.Services;
 
@@ -10,6 +11,7 @@ namespace PropertySystemProject.CrossCuting.IoC
         {
             services.AddScoped<IPropertyService, PropertyService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddTransient<IJwtTokenService, JwtTokenService>();
         }
     }
 }

@@ -21,10 +21,11 @@ namespace PropertySystemProject.CrossCuting.Mappings
            
             CreateMap<Address, AddressRequestDTO>().ReverseMap();
             CreateMap<Property, PropertyResponseDTO>().ReverseMap();
-            
-            CreateMap<User, RegisterDTO>()
-                .ForMember(dest => BCrypt.Net.BCrypt.HashPassword(dest.Password), opt => opt.MapFrom(src => src.Password))
-                .ReverseMap();
+
+            CreateMap<RegisterDTO, User>()
+                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => BCrypt.Net.BCrypt.HashPassword(src.Password)))
+                .ReverseMap()
+                .ForMember(dest => dest.Password, opt => opt.Ignore());
         }
     }
 }

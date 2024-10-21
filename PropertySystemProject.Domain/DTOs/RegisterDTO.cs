@@ -12,8 +12,6 @@ namespace PropertySystemProject.Domain.DTOs
     {
         [Required]
         public string Name { get; set; }
-        [Required]
-        public UserRole Role { get; set; }
 
         [Required, Compare(nameof(Password)), DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }

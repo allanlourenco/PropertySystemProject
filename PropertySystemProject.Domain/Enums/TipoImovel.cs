@@ -8,8 +8,8 @@ namespace PropertySystemProject.Domain.Enums
 {
     public enum TipoImovel
     {
-        Casa,
-        Apartamento,
-        Terreno
+        Casa = 1,
+        Apartamento = 2,
+        Terreno = 3
     }
 }

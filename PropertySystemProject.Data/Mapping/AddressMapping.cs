@@ -44,7 +44,7 @@ namespace PropertySystemProject.Data.Mapping
 
             builder.Property(e => e.CEP)
                 .HasColumnName("CEP")
-                .HasColumnType("varchar(8)")
+                .HasColumnType("varchar(20)")
                 .IsRequired();
 
             builder.Property(e => e.Complement)

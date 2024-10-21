@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PropertySystemProject.Domain.DTOs;
 using PropertySystemProject.Domain.Entities;
 using PropertySystemProject.Domain.Interfaces.Service;
@@ -41,6 +42,7 @@ namespace PropertySystemProject.Application.Controllers
             return Ok(property);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddProperty([FromBody] PropertyRequestDTO propertyDTO)
         {
@@ -59,6 +61,7 @@ namespace PropertySystemProject.Application.Controllers
             return CreatedAtAction(nameof(GetPropertyById), new { id = propertyResponseDTO.Id }, propertyResponseDTO);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProperty(Guid id, [FromBody] PropertyRequestDTO propertyDTO)
         {
@@ -76,6 +79,7 @@ namespace PropertySystemProject.Application.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProperty(Guid id)
         {

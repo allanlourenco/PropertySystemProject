@@ -17,7 +17,7 @@ using static PropertySystemProject.Domain.Responses.CustomReponses;
 
 namespace PropertySystemProject.Service.Services
 {
-    public class AccountService(IConfiguration configuration, IUnitOfWork unitOfWork, IMapper mapper) : IAccountService
+    public class AccountService(IUnitOfWork unitOfWork, IMapper mapper, IJwtTokenService jwtTokenService) : IAccountService
     {
         public async Task<LoginResponse> LoginAsync(LoginDTO model)
         {
@@ -27,29 +27,8 @@ namespace PropertySystemProject.Service.Services
             if (!BCrypt.Net.BCrypt.Verify(model.Password, findUser.Password))
                 return new LoginResponse(false, "Email ou senha inválidos.");
 
-            string jwtToken = GenerateToken(findUser);
+            string jwtToken = jwtTokenService.GenerateToken(findUser);
             return new LoginResponse(true, "Login feito com sucesso.", jwtToken);
-        }
-
-        private string GenerateToken(User user)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var userClaims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Name!),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role.ToString()),
-            };
-            var token = new JwtSecurityToken(
-                issuer: configuration["Jwt:Issuer"],
-                audience: configuration["Jwt:Audience"],
-                claims: userClaims,
-                expires: DateTime.Now.AddDays(2),
-                signingCredentials: credentials
-                );
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         public async Task<RegistrationResponse> RegisterAsync(RegisterDTO model)
@@ -58,14 +37,6 @@ namespace PropertySystemProject.Service.Services
             if (findUser != null) return new RegistrationResponse(false, "Usuário já existe.");
 
             var user = mapper.Map<User>(model);
-            //_context.Users.Add(new ApplicationUser()
-            //{
-            //    Name = model.Name,
-            //    Email = model.Email,
-            //    Role = model.Role,
-            //    Password = BCrypt.Net.BCrypt.HashPassword(model.Password)
-            //});
-
 
             await unitOfWork.UserRepository.AddAsync(user);
             await unitOfWork.CommitAsync();

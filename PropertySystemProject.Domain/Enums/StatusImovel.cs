@@ -8,7 +8,7 @@ namespace PropertySystemProject.Domain.Enums
 {
     public enum StatusImovel
     {
-        Disponivel,
-        Vendido
+        Disponivel = 1,
+        Vendido = 2
     }
 }

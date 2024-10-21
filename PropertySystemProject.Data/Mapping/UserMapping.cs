@@ -35,14 +35,7 @@ namespace PropertySystemProject.Data.Mapping
             builder.Property(p => p.Password)
                 .HasColumnName("Password")
                 .HasColumnType("varchar(500)")
-                .IsRequired();
-
-            builder.Property(p => p.Role)
-                .HasColumnName("Role")
-                .HasColumnType("int")
-                .IsRequired();
-
-          
+                .IsRequired();          
         }
     }
 }

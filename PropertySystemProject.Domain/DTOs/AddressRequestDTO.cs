@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PropertySystemProject.Domain.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,8 +17,9 @@ namespace PropertySystemProject.Domain.DTOs
         [Required(ErrorMessage = "A cidade do imóvel é obrigatória.")]
         public string City { get; set; } = string.Empty;
         [Required(ErrorMessage = "O estado do imóvel é obrigatório.")]
-        [StringLength(2, MinimumLength = 2, ErrorMessage = "O campo estado do imóvel deve conter exatamente 2 caracteres.")]
+        [EstadoBrasileiroValidator]
         public string State { get; set; } = string.Empty;
+        [RegularExpression(@"^\d{5}-\d{3}$|^\d{8}$", ErrorMessage = "CEP inválido. O formato deve ser XXXXX-XXX ou XXXXXXXX.")]
         [Required(ErrorMessage = "O CEP do imóvel é obrigatório.")]
         public string CEP { get; set; } = string.Empty;
         public string? Complement { get; set; }
