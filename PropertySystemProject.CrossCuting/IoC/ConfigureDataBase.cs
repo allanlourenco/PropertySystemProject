@@ -13,11 +13,11 @@ namespace PropertySystemProject.CrossCuting.IoC
     {
         public static void AddDatabase(IServiceCollection services)
         {
-            //services.AddDbContext<MeuDbContext>(options =>
-            //    options.UseInMemoryDatabase("MinhaBaseInMemory"));
-            var connectionString = Environment.GetEnvironmentVariable("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             services.AddDbContext<PropertyWebContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseInMemoryDatabase("MinhaBaseInMemory"));
+            //var connectionString = Environment.GetEnvironmentVariable("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            //services.AddDbContext<PropertyWebContext>(options =>
+            //    options.UseSqlServer(connectionString));
         }
     }
 }

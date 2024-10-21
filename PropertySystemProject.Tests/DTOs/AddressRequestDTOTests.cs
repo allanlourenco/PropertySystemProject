@@ -14,7 +14,6 @@ namespace PropertySystemProject.Tests.DTOs
         [Test]
         public void AddressRequestDTO_Validation_ShouldBeValid_WhenAllPropertiesAreValid()
         {
-            // Arrange
             var address = new AddressRequestDTO
             {
                 Street = "Rua das Flores",
@@ -25,17 +24,14 @@ namespace PropertySystemProject.Tests.DTOs
                 Complement = "Apto 12"
             };
 
-            // Act
             var validationResults = Validate(address);
 
-            // Assert
             Assert.IsEmpty(validationResults);
         }
 
         [Test]
         public void AddressRequestDTO_Validation_ShouldReturnError_WhenStreetIsEmpty()
         {
-            // Arrange
             var address = new AddressRequestDTO
             {
                 Street = "",
@@ -45,10 +41,8 @@ namespace PropertySystemProject.Tests.DTOs
                 CEP = "12345-678"
             };
 
-            // Act
             var validationResults = Validate(address);
 
-            // Assert
             Assert.IsNotEmpty(validationResults);
             Assert.AreEqual("A rua do imóvel é obrigatório.", validationResults[0].ErrorMessage);
         }
@@ -56,7 +50,6 @@ namespace PropertySystemProject.Tests.DTOs
         [Test]
         public void AddressRequestDTO_Validation_ShouldReturnError_WhenNumberIsNull()
         {
-            // Arrange
             var address = new AddressRequestDTO
             {
                 Street = "Rua das Flores",
@@ -66,10 +59,8 @@ namespace PropertySystemProject.Tests.DTOs
                 CEP = "12345-678"
             };
 
-            // Act
             var validationResults = Validate(address);
 
-            // Assert
             Assert.IsNotEmpty(validationResults);
             Assert.AreEqual("O número do endereço do imóvel é obrigatório.", validationResults[0].ErrorMessage);
         }
@@ -77,7 +68,6 @@ namespace PropertySystemProject.Tests.DTOs
         [Test]
         public void AddressRequestDTO_Validation_ShouldReturnError_WhenCityIsEmpty()
         {
-            // Arrange
             var address = new AddressRequestDTO
             {
                 Street = "Rua das Flores",
@@ -87,10 +77,8 @@ namespace PropertySystemProject.Tests.DTOs
                 CEP = "12345-678"
             };
 
-            // Act
             var validationResults = Validate(address);
 
-            // Assert
             Assert.IsNotEmpty(validationResults);
             Assert.AreEqual("A cidade do imóvel é obrigatória.", validationResults[0].ErrorMessage);
         }
@@ -98,7 +86,6 @@ namespace PropertySystemProject.Tests.DTOs
         [Test]
         public void AddressRequestDTO_Validation_ShouldReturnError_WhenStateIsEmpty()
         {
-            // Arrange
             var address = new AddressRequestDTO
             {
                 Street = "Rua das Flores",
@@ -108,10 +95,8 @@ namespace PropertySystemProject.Tests.DTOs
                 CEP = "12345-678"
             };
 
-            // Act
             var validationResults = Validate(address);
 
-            // Assert
             Assert.IsNotEmpty(validationResults);
             Assert.AreEqual("O estado do imóvel é obrigatório.", validationResults[0].ErrorMessage);
         }
@@ -119,7 +104,6 @@ namespace PropertySystemProject.Tests.DTOs
         [Test]
         public void AddressRequestDTO_Validation_ShouldReturnError_WhenStateIsInvalid()
         {
-            // Arrange
             var address = new AddressRequestDTO
             {
                 Street = "Rua das Flores",
@@ -129,17 +113,14 @@ namespace PropertySystemProject.Tests.DTOs
                 CEP = "12345-678"
             };
 
-            // Act
             var validationResults = Validate(address);
 
-            // Assert
             Assert.IsNotEmpty(validationResults);
         }
 
         [Test]
         public void AddressRequestDTO_Validation_ShouldReturnError_WhenCEPIsInvalid()
         {
-            // Arrange
             var address = new AddressRequestDTO
             {
                 Street = "Rua das Flores",
@@ -149,10 +130,8 @@ namespace PropertySystemProject.Tests.DTOs
                 CEP = "123456789" // CEP sem o hífen
             };
 
-            // Act
             var validationResults = Validate(address);
 
-            // Assert
             Assert.IsNotEmpty(validationResults);
             Assert.AreEqual("CEP inválido. O formato deve ser XXXXX-XXX ou XXXXXXXX.", validationResults[0].ErrorMessage);
         }
@@ -160,7 +139,6 @@ namespace PropertySystemProject.Tests.DTOs
         [Test]
         public void AddressRequestDTO_Validation_ShouldReturnError_WhenCEPIsEmpty()
         {
-            // Arrange
             var address = new AddressRequestDTO
             {
                 Street = "Rua das Flores",
@@ -170,10 +148,8 @@ namespace PropertySystemProject.Tests.DTOs
                 CEP = "" // CEP vazio
             };
 
-            // Act
             var validationResults = Validate(address);
 
-            // Assert
             Assert.IsNotEmpty(validationResults);
             Assert.AreEqual("O CEP do imóvel é obrigatório.", validationResults[0].ErrorMessage);
         }
