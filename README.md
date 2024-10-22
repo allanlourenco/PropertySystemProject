@@ -26,7 +26,7 @@ A api estará disponível na url https://localhost:7262/.
 Para rodar os endpoints de cadastro, alteração e remoção de imóveis, o usuário deve estar autenticado.
 Para se autenticar no sistema, o usuário deve criar um usuário através do endpoint de registro, e após o usuário criado, deve se autenticar atraves do endpoint login.
 
-##Endpoints
+## Endpoints
 1. Login: Atráves do usuário e senha, retorna um token de autenticação.
 2. Register: Insere um novo usuário
 3. Get/Properties: Trás a lista de imóveis cadastrados
